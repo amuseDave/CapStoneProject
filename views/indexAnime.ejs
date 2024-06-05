@@ -1,0 +1,87 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="anime-cont">
+    <% if (locals.trailer){%>
+    <iframe
+      class="embed-anime-video"
+      src="<%= trailer %>"
+      frameborder="0"
+      autoplay
+    ></iframe>
+    <%}else if (locals.images){%>
+    <img class="anime-image" src="<%=images.large_image_url%>" alt="" />
+    <% }%>
+    <div class="anime-info-container">
+      <div class="anime-info-title">
+        <% if (locals.titles){ titles.forEach((title) => { %>
+        <h2>
+          <span class="anime-title"><%=title.type %> Title:</span><br />
+          <%= title.title %>
+        </h2>
+        <%})}%>
+      </div>
+
+      <div class="anime-description">
+        <form action="/anime/description">
+          <label class="label" for="description">Description:</label>
+          <input
+            class="description-button"
+            type="submit"
+            name="description"
+            value="Click Here"
+          />
+        </form>
+        <div class="anime-row">
+          <div class="label">Genre:</div>
+          <div class="anime-row">
+            <% if(locals.type.length != 0){%> <% type.forEach((genre) => {%>
+            <h4>| <%= genre.name %> |</h4>
+            <%})}else {%>
+            <h4 class="star-error">| No Data |</h4>
+            <%}%>
+          </div>
+        </div>
+        <div class="anime-row">
+          <div class="label">Ratings:</div>
+          <div class="anime-row">
+            <%if (locals.score.score != null){%>
+            <h4 class="anime-star">
+              | ⭐<%= score.score %> 🕵️<%=score.scoredBy %>|
+            </h4>
+            <%}else {%>
+            <h4 class="star-error">| No Ratings |</h4>
+            <%}%>
+            <!--SPACE-->
+            <%if (locals.rank.rank != null){%>
+            <h4 class="anime-star">| 🔝<%= rank.rank %> |</h4>
+            <!--SPACE-->
+            <%}%>
+          </div>
+        </div>
+        <div class="anime-row">
+          <div class="label">Year Release:</div>
+          <div class="anime-row">
+            <% if (locals.year != null){%>
+            <h4>| 📅<%= year %> |</h4>
+            <%}else {%>
+            <h4 class="star-error">| No Data |</h4>
+            <%}%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form action="/random-anime" method="POST">
+      <input
+        class="anime-button"
+        type="submit"
+        name="anime"
+        value="🔖Generate Anime🔖"
+      />
+    </form>
+  </body>
+</html>
