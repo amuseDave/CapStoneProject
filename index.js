@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+//
+//
 //ANIME POST GET REQUEST
 
 //anime variables
@@ -41,9 +43,9 @@ app.get("/random-anime", (req, res) => {
   });
   // if there's an error load main page and display the type of error
 });
-//So post request is needed because later I want to get back to previous page
-// so for that I need variables saved, so that's why 2 diff methods
-// oherwise it would rerender to diff anime
+// So post request is needed because later I want to get back to previous page
+// So for that I need variables saved, so that's why 2 diff methods
+// Oherwise it would rerender to diff anime
 app.post("/random-anime", async (req, res) => {
   try {
     const result = await axios.get(`https://api.jikan.moe/v4/random/anime`);
@@ -95,7 +97,12 @@ app.get("/anime-description", (req, res) => {
   res.render("indexAnime-description.ejs", { description: description });
 });
 //ANIME POST GET REQUEST
-
+//
+//
+//
 app.listen(port, () => {
   console.log(`server is live on ${port}`);
 });
+
+/* "So I made a graph of all my past relationships.",
+    "It has an ex axis and a why axis.", */
