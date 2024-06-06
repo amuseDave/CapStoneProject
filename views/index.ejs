@@ -30,18 +30,21 @@
             />
           </form>
         </div>
+        <% if (locals.error) {%>
+        <h3><%= locals.error %></h3>
+        <%}%>
       </div>
     </main>
     <script>
       $(document).ready(() => {
         $(".category-container").hover(
           () => {
-            $(".main-body").css("background-color", "rgb(39, 56, 61)");
-            $(".category-container").css("background-color", "rgb(7, 20, 27)");
+            $(".main-body").css("background-color", "rgb(87, 87, 87)");
+            $(".category-container").css("background-color", "rgb(24, 24, 24)");
           },
           () => {
-            $(".main-body").css("background-color", "rgb(7, 20, 27)");
-            $(".category-container").css("background-color", "rgb(39, 56, 61)");
+            $(".main-body").css("background-color", "rgb(24, 24, 24)");
+            $(".category-container").css("background-color", "rgb(87, 87, 87)");
           }
         );
       });

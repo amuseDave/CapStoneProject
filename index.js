@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { log } from "console";
 
 const app = express();
 const port = 3000;
@@ -88,7 +89,7 @@ app.post("/random-anime", async (req, res) => {
     // if there's an error load main page and display the type of error
   } catch (error) {
     res.render("index.ejs", {
-      error: `Generator crashed: ${error.response}`,
+      error: `Generator crashed: ${JSON.stringify(error.response)}`,
     });
   }
 });
@@ -100,9 +101,55 @@ app.get("/anime-description", (req, res) => {
 //
 //
 //
+
+// JOKE HTTP REQUEST
+var jokes;
+
+app.post("/random-joke", async (req, res) => {
+  try {
+    const result = await axios.get(
+      "https://v2.jokeapi.dev/joke/Programming,Pun,Spooky"
+    );
+    const joke = {
+      joke: result.data.joke,
+      category: result.data.category,
+      setup: result.data.setup,
+      delivery: result.data.delivery,
+    };
+    jokes = [];
+    jokes.push(joke);
+    res.render("indexJoke.ejs", { jokes: jokes });
+  } catch (error) {
+    res.render(
+      "index.ejs",
+      `Generator crashed: ${JSON.stringify(error.response)}`
+    );
+  }
+});
+
+app.post("/random-joke1", async (req, res) => {
+  var selection = "";
+  const typeArray = [req.body.options];
+
+  if (typeArray[0] !== undefined) {
+    typeArray.forEach((option) => {
+      selection += `${option},`;
+    });
+  }
+  selection = selection.slice(0, -1);
+  console.log(selection);
+  const result = await axios.get(
+    `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
+  );
+
+  res.render("indexJoke.ejs");
+});
+// JOKE HTTP REQUEST
+
 app.listen(port, () => {
   console.log(`server is live on ${port}`);
 });
 
 /* "So I made a graph of all my past relationships.",
-    "It has an ex axis and a why axis.", */
+    "It has an ex axis and a why axis.", 
+    https://v2.jokeapi.dev/joke/Pun,Christmas?amount=5*/

@@ -7,5 +7,55 @@
   </head>
   <body class="joke-body">
     <%- include('partials/header.ejs') %>
+
+    <!---->
+    <!---->
+    <div class="jokes-container">
+      <% if (locals.jokes){ %>
+      <!---->
+      <% jokes.forEach((joke) => { %>
+      <div class="joke-container">
+        <% if(joke.joke !== undefined){%>
+        <span class="joke-title-text">📔<%= joke.category %>📔</span>
+        <div class="joke-text joke-m"><%=joke.joke%></div>
+        <%} else {%>
+        <span class="joke-title-text">📔<%= joke.category %>📔</span>
+        <div class="joke-text joke-m"><%=joke.setup%></div>
+        <div class="joke-text joke-d"><%=joke.delivery%></div>
+        <%}%>
+      </div>
+
+      <%})}%>
+    </div>
+    <!---->
+    <!---->
+
+    <!---->
+    <!---->
+    <div class="joke-generator-container-wrap">
+      <div class="joke-generator-container">
+        <form action="/random-joke1" method="POST">
+          <input type="checkbox" name="options" value="Pun" />
+          <input type="checkbox" name="options" value="Christmas" />
+          <input type="checkbox" name="options" value="Dark" />
+          <input type="checkbox" name="options" value="Spooky" />
+          <select name="amount">
+            <option selected value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <input type="submit" />
+        </form>
+      </div>
+    </div>
+    <!---->
+    <!---->
   </body>
 </html>
