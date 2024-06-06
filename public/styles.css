@@ -12,7 +12,6 @@
 /*IndexAnimes*/
 .anime-cont {
   font-family: "LXGW WenKai Mono TC", monospace;
-  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='34.129' height='45' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(180, 0%, 9%, 1)'/><path d='M2.51 1.597A23.682 23.682 0 000 1.72v32.65c2.18-2 4.176-4.072 5.844-5.915 3.188-3.523 9.14-2.133 10.242 2.488a5.048 5.048 0 01-.467 3.649c-1.5 2.829-3.843 2.848-5.616 2.316-1.343-.403-2.579.882-2.085 2.193.878 2.334 3.46 4.9 10.724 4.18 5.05-.5 10.712-4.53 15.487-8.911V1.72c-7.355.728-16.01 8.948-21.33 14.827-3.188 3.522-9.14 2.133-10.242-2.489a5.05 5.05 0 01.466-3.648C4.525 7.58 6.867 7.56 8.64 8.092c1.342.403 2.578-.88 2.085-2.192-.77-2.042-2.842-4.262-8.214-4.303z'  stroke-width='1' stroke='none' fill='hsla(229, 53%, 3%, 1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
 
   display: flex;
   justify-content: center;
@@ -21,6 +20,12 @@
 }
 form {
   background: none;
+}
+.anime-body {
+  background-image: url(cloudp.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .anime-button {
@@ -34,30 +39,30 @@ form {
   cursor: pointer;
   font-family: "LXGW WenKai Mono TC", monospace;
   box-shadow: 0px 0px 10px black;
+  transition: all 0.2s ease-in-out;
 }
 
 .anime-button:hover {
   background: none;
   color: white;
-  transition: all 0.2s ease-in-out;
 }
 .embed-anime-video {
-  margin-top: 100px;
+  margin-top: 75px;
   width: 700px;
   height: 400px;
   border: 3px solid white;
 }
 .anime-image {
-  margin-top: 100px;
+  margin-top: 75px;
   height: 400px;
-  max-width: 900px;
+  max-width: 700px;
   border: 3px solid white;
 }
 .anime-info-container {
   width: 700px;
   height: 300px;
   font-size: 15px;
-  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='34.129' height='45' patternTransform='scale(3) rotate(90)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(180, 9%, 1%, 1)'/><path d='M2.51 1.597A23.682 23.682 0 000 1.72v32.65c2.18-2 4.176-4.072 5.844-5.915 3.188-3.523 9.14-2.133 10.242 2.488a5.048 5.048 0 01-.467 3.649c-1.5 2.829-3.843 2.848-5.616 2.316-1.343-.403-2.579.882-2.085 2.193.878 2.334 3.46 4.9 10.724 4.18 5.05-.5 10.712-4.53 15.487-8.911V1.72c-7.355.728-16.01 8.948-21.33 14.827-3.188 3.522-9.14 2.133-10.242-2.489a5.05 5.05 0 01.466-3.648C4.525 7.58 6.867 7.56 8.64 8.092c1.342.403 2.578-.88 2.085-2.192-.77-2.042-2.842-4.262-8.214-4.303z'  stroke-width='1' stroke='none' fill='hsla(229, 35%, 0%, 1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  background: rgba(0, 0, 0, 0.959);
   border: 2px solid white;
 }
 .anime-info-title {
@@ -94,23 +99,34 @@ form {
 .anime-row {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 10px;
   justify-content: start;
   align-items: center;
 }
+.anime-row .anime-row {
+  margin-top: 0px;
+}
+
 .label {
   font-weight: 700;
   font-size: 1.1rem;
 }
 .anime-row h4 {
   margin-left: 10px;
-  color: yellow;
+  color: rgb(51, 66, 94);
 }
 
-h4.anime-star {
-  color: yellow;
-}
 h4.star-error {
-  color: orange;
+  color: rgb(51, 51, 51);
+  text-shadow: 0px 0px 10px black;
+}
+.anime-text-shadow {
+  text-shadow: 0px 0px 5px rgb(51, 66, 94);
+}
+.fixed-anime {
+  position: fixed;
+  top: 5px;
+  left: 5px;
 }
 @media (max-width: 800px) {
   .embed-anime-video {
@@ -150,3 +166,42 @@ h4.star-error {
 }
 
 /*IndexAnimes*/
+
+/*MAIN BODY */
+/*MAIN BODY */
+/*MAIN BODY */
+.main-body {
+  background-image: url(mainpbg.jpg);
+}
+
+.category-container {
+  border: 4px solid #11b8c4;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70svh;
+}
+.generator-main {
+  color: black;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.main-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.category-container h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+/*MAIN BODY */
+/*MAIN BODY */
+/*MAIN BODY */

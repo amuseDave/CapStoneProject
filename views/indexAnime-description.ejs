@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+      .anime-cont {
+        align-items: center;
+        margin-top: 60px;
+        padding: 0px 50px;
+        display: flex;
+        height: 85svh;
+        justify-content: center;
+        font-family: "LXGW WenKai Mono TC", monospace;
+      }
+      .description-container {
+        max-width: 1000px;
+        min-width: 400px;
+        padding: 10px;
+        flex: 1;
+        height: 500px;
+        background-color: rgba(0, 0, 0, 0.932);
+        border: 2px solid white;
+        text-align: center;
+        color: white;
+      }
+      .description-container h1 {
+        text-shadow: 0px 0px 10px white;
+      }
+      h1.error {
+        color: red;
+        text-shadow: 0px 0px 6px red;
+      }
+      .fixed-anime {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+      }
+      .description-container h3 {
+        margin-top: 10px;
+      }
+      @media (max-width: 575px) {
+        .description-container {
+          height: 750px;
+        }
+      }
+      @media (max-width: 452px) {
+        .anime-cont {
+          padding: 0px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body class="anime-body">
+    <form class="fixed-anime" action="/random-anime" method="GET">
+      <input type="submit" value="⬅️ Go Back" />
+    </form>
+    <div class="anime-cont">
+      <div class="description-container">
+        <h1>Description</h1>
+        <%if(locals.description){%>
+        <h3><%= locals.description%></h3>
+        <%}else {%>
+        <h1 class="error">Can't get the description from this anime</h1>
+        <%}%>
+      </div>
+    </div>
+  </body>
+</html>
