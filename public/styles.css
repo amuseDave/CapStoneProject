@@ -5,8 +5,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: white;
-  font-family: "Roboto" sans-serif;
+  color: rgb(216, 225, 228);
+
+  font-family: "Roboto", sans-serif;
 }
 
 /*IndexAnimes*/
@@ -125,8 +126,8 @@ h4.star-error {
 }
 .fixed-anime {
   position: fixed;
-  top: 5px;
-  left: 5px;
+  top: 40px;
+  left: 0px;
 }
 @media (max-width: 800px) {
   .embed-anime-video {
@@ -171,23 +172,30 @@ h4.star-error {
 /*MAIN BODY */
 /*MAIN BODY */
 .main-body {
-  background-image: url(mainpbg.jpg);
+  background-color: rgb(7, 20, 27);
+  transition: all 0.4s ease-in-out;
+  /* background-image: url(mainpbg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed;*/
 }
 
 .category-container {
   flex: 1;
+  background-color: rgb(39, 56, 61);
   max-width: 600px;
-  border: 4px solid #11b8c4;
-  box-shadow: 0px 0px 10px #11b8c4;
+  border: 2px solid #7d858f;
+  box-shadow: 0px 0px 10px #7d858f;
   border-radius: 10px;
+
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 150px;
+  transition: all 0.3s ease-in-out;
 }
+
 main.main {
   padding: 0px 50px;
   display: flex;
@@ -197,33 +205,31 @@ main.main {
 }
 .generator-main {
   flex: 1;
-  color: black;
   margin: 0px 10px;
-  border: 1px solid #11b8c4;
-  color: white;
-  background: none;
+  border: 1px solid rgb(216, 225, 228);
+  background-color: transparent;
   padding: 5px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-.category-container .generator-main {
-  margin-top: 20px;
-}
+
 .generator-main:hover {
-  text-shadow: 0px 0px 10px #11b8c4;
-  box-shadow: 0px 0px 10px #11b8c4;
+  background-color: rgb(39, 56, 61);
+  text-shadow: 0px 0px 10px rgb(8, 25, 27);
+  box-shadow: 0px 0px 10px #ffffff;
 }
 
 .main-row {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .category-container h1 {
   font-size: 2.7rem;
-  font-weight: 500;
+
+  font-weight: 400;
 }
 
 @media (max-width: 585px) {

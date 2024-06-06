@@ -35,21 +35,43 @@
         text-shadow: 0px 0px 6px red;
       }
       .fixed-anime {
-        position: fixed;
-        top: 5px;
-        left: 5px;
+        position: absolute;
+        top: 40px;
+        left: 0px;
       }
       .description-container h3 {
+        line-height: 23px;
         margin-top: 10px;
       }
       @media (max-width: 575px) {
         .description-container {
           height: 750px;
         }
+        .anime-cont {
+          padding: 0px 10px;
+          height: 100svh;
+        }
       }
       @media (max-width: 452px) {
         .anime-cont {
           padding: 0px 10px;
+          height: 100svh;
+        }
+      }
+      @media (max-width: 420px) {
+        .description-container {
+          margin-top: 10px;
+          min-width: 340px;
+        }
+      }
+      @media (max-width: 530px) {
+        .fixed-anime {
+          top: 10px;
+        }
+      }
+      @media (max-width: 360px) {
+        .header h4 {
+          margin-left: 20px;
         }
       }
     </style>
