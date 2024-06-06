@@ -41,7 +41,9 @@ app.get("/random-anime", (req, res) => {
   });
   // if there's an error load main page and display the type of error
 });
-
+//So post request is needed because later I want to get back to previous page
+// so for that I need variables saved, so that's why 2 diff methods
+// oherwise it would rerender to diff anime
 app.post("/random-anime", async (req, res) => {
   try {
     const result = await axios.get(`https://api.jikan.moe/v4/random/anime`);

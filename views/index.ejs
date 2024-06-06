@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="main-body">
+    <%- include('partials/header.ejs') %>
     <main class="main">
       <div class="category-container">
         <h1>GENERATOR</h1>
@@ -15,15 +16,16 @@
               class="generator-main"
               type="submit"
               name="anime"
-              value="Generate Random Anime"
+              value="🔖Generate Random Anime🔖"
             />
           </form>
+
           <form action="/random-joke" method="POST">
             <input
               class="generator-main"
               type="submit"
               name="joke"
-              value="Generate Random Joke"
+              value="😄Generate Random Joke😄"
             />
           </form>
         </div>
