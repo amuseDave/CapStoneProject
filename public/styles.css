@@ -64,7 +64,7 @@ form {
 }
 .anime-info-container {
   width: 700px;
-  height: 300px;
+  height: 350px;
   font-size: 15px;
   background: rgba(0, 0, 0, 0.959);
   border: 2px solid white;
@@ -159,11 +159,7 @@ h4.star-error {
   }
   .anime-info-container {
     width: 350px;
-    height: 500px;
-  }
-  .embed-anime-video,
-  .anime-image {
-    margin-top: 20px;
+    height: 540px;
   }
 }
 
@@ -286,14 +282,16 @@ main.main {
   background-image: url(jokepbg.png);
   padding: 0px 40px;
   padding-top: 100px;
+  padding-bottom: 40px;
   font-family: Raleway, sans-serif;
 }
 .jokes-container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
   justify-items: center;
 }
@@ -306,6 +304,7 @@ main.main {
   color: #d3d3d3;
   position: relative;
   padding: 15px;
+  margin: 0px 20px;
 }
 .joke-generator-container::before {
   content: "";
@@ -344,12 +343,13 @@ main.main {
 .joke-container {
   position: relative;
   border-radius: 5px;
-  width: 350px;
-  height: 200px;
+  width: 320px;
+  min-height: 200px;
   padding: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 30px;
   background: #1e2020; /* fallback for old browsers */
 }
 
@@ -382,8 +382,6 @@ main.main {
 }
 
 .joke-text {
-  border-top: 1px solid rgb(255, 255, 255);
-  border-bottom: 1px solid rgb(255, 255, 255);
   color: rgb(255, 255, 255);
   margin-top: 5px;
   padding: 2px 0px;
@@ -392,6 +390,14 @@ main.main {
   font-weight: 500;
   text-shadow: 0px 0px 10px rgb(19, 19, 26);
 }
+.joke-t {
+  margin-top: 10px;
+}
+.joke-line {
+  height: 1px;
+  width: 100%;
+  background-color: white;
+}
 
 .joke-title-text {
   width: 100%;
@@ -399,7 +405,7 @@ main.main {
   font-weight: 500;
   color: rgb(155, 155, 155);
   text-align: center;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgb(185, 185, 185);
 }
 .joke-submit {
   position: absolute;
@@ -437,6 +443,39 @@ main.main {
   font-family: Raleway, sans-serif;
 }
 
+.joke-save-bttn {
+  position: absolute;
+  right: 5;
+  bottom: 5;
+  background-color: #c70039;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.joke-save-bttn:hover {
+  color: #c70039;
+  background-color: white;
+}
+
+.saved {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (max-width: 1360px) {
+  .joke-generator-container-wrap {
+    position: absolute;
+    top: 50;
+    bottom: auto;
+  }
+  .jokes-container {
+    position: static;
+    margin-top: 130px;
+  }
+}
 /*Jokes styling*/
 /*Jokes styling*/
 /*Jokes styling*/

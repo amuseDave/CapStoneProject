@@ -89,7 +89,7 @@ app.post("/random-anime", async (req, res) => {
     // if there's an error load main page and display the type of error
   } catch (error) {
     res.render("index.ejs", {
-      error: `Generator crashed: ${JSON.stringify(error.response)}`,
+      error: `Generator crashed: ${error.response})`,
     });
   }
 });
@@ -108,7 +108,9 @@ app.get("/anime-description", (req, res) => {
 var jokes;
 
 app.get("/random-joke", async (req, res) => {
-  res.render("index.Joke.ejs", { jokes: jokes });
+  res.render("index.Joke.ejs", {
+    jokes: jokes,
+  });
 });
 
 app.post("/random-joke", async (req, res) => {
@@ -124,7 +126,7 @@ app.post("/random-joke", async (req, res) => {
         });
         selection = selection.slice(0, -1);
       } else {
-        selection = "Programming,Pun,Spooky,Christmas";
+        selection = "Dark,Pun,Spooky,Christmas";
       }
       const result = await axios.get(
         `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
@@ -147,11 +149,10 @@ app.post("/random-joke", async (req, res) => {
           delivery: result.data.delivery,
         });
       }
-
       res.render("indexJoke.ejs", { jokes: jokes });
     } else {
       const result = await axios.get(
-        "https://v2.jokeapi.dev/joke/Christmas,Pun,Spooky,Programming"
+        "https://v2.jokeapi.dev/joke/Christmas,Pun,Spooky,Dark"
       );
       const joke = {
         joke: result.data.joke,
@@ -159,7 +160,6 @@ app.post("/random-joke", async (req, res) => {
         setup: result.data.setup,
         delivery: result.data.delivery,
       };
-
       jokes.push(joke);
       res.render("indexJoke.ejs", { jokes: jokes });
     }

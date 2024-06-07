@@ -9,8 +9,10 @@
         position: absolute;
         top: 40;
         left: 0;
+        z-index: 1;
       }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body class="joke-body">
     <%- include('partials/header.ejs') %>
@@ -25,13 +27,28 @@
       <% jokes.forEach((joke, index) => { %>
       <div class="joke-container">
         <% if(joke.joke !== undefined){%>
-        <span class="joke-title-text">📔<%= joke.category %>📔</span>
-        <div class="joke-text"><%=joke.joke%></div>
+        <div class="saved saved-<%= index %>">
+          <span class="joke-title-text jk-j-c-<%= index%>"
+            >📔<%= joke.category %>📔</span
+          >
+          <div class="joke-text joke-t jk-j-<%= index%>"><%=joke.joke%></div>
+        </div>
         <%} else {%>
-        <span class="joke-title-text">📔<%= joke.category %>📔</span>
-        <div class="joke-text"><%=joke.setup%></div>
-        <div class="joke-text"><%=joke.delivery%></div>
+        <div class="saved saved-<%= index %>">
+          <span class="joke-title-text jk-sd-c-<%= index%>"
+            >📔<%= joke.category %>📔</span
+          >
+          <div class="joke-text joke-t jk-s-<%= index%>"><%=joke.setup%></div>
+          <div class="joke-line"></div>
+          <div class="joke-text jk-d-<%= index%>"><%=joke.delivery%></div>
+        </div>
         <%}%>
+        <div
+          data-index="<%= index %>"
+          class="joke-save-bttn joke-save-bttn-<%= index%>"
+        >
+          Save
+        </div>
       </div>
       <%})}%>
       <!---->
@@ -64,7 +81,7 @@
                 class="joke-input-style"
                 type="checkbox"
                 name="options"
-                value="Programming"
+                value="Dark"
               />
             </div>
             <div class="joke-row">
@@ -86,6 +103,8 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
                 <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
               </select>
               <input
                 value="Generate joke :D"
@@ -99,7 +118,49 @@
       <!---->
       <!---->
     </div>
-    <!---->
-    <!---->
+    <script>
+      $(document).ready(() => {
+        let savedJokes = [];
+
+        $(".joke-save-bttn").click(function () {
+          let sameJoke = false;
+          var savedJoke = [];
+          const index = $(this).data("index");
+          //
+          const jokeCat = $(`.jk-sd-c-${index}`).text();
+          const jokeS = $(`.jk-s-${index}`).text();
+          const jokeD = $(`.jk-d-${index}`).text();
+          //
+          const jokeCat2 = $(`.jk-j-c-${index}`).text();
+          const jokeJ = $(`.jk-j-${index}`).text();
+          if (jokeCat === "") {
+            savedJoke.push({ category: jokeCat2, joke: jokeJ });
+          } else if (jokeCat2 === "") {
+            savedJoke.push({
+              category: jokeCat,
+              setup: jokeS,
+              delivery: jokeD,
+            });
+          }
+          if (savedJokes.length === 0) {
+            savedJokes.push(savedJoke);
+          } else {
+            savedJokes.forEach((joke) => {
+              if (
+                joke.setup === savedJoke.setup ||
+                joke.joke === savedJoke.joke
+              ) {
+                sameJoke = true;
+              }
+            });
+            if (!sameJoke) {
+              savedJokes.push(savedJoke);
+            }
+          }
+          console.log(savedJokes);
+          console.log(sameJoke);
+        });
+      });
+    </script>
   </body>
 </html>
