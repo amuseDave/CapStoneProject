@@ -4,10 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .back-bttn {
+        position: absolute;
+        top: 40;
+        left: 0;
+      }
+    </style>
   </head>
   <body class="joke-body">
     <%- include('partials/header.ejs') %>
-    <form class="fixed-anime" action="/" method="GET">
+    <form class="back-bttn" action="/" method="GET">
       <input type="submit" value="⬅️ Go Back" />
     </form>
     <!---->
@@ -57,7 +64,7 @@
                 class="joke-input-style"
                 type="checkbox"
                 name="options"
-                value="Dark"
+                value="Programming"
               />
             </div>
             <div class="joke-row">

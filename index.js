@@ -124,7 +124,7 @@ app.post("/random-joke", async (req, res) => {
         });
         selection = selection.slice(0, -1);
       } else {
-        selection = "Dark,Pun,Spooky,Christmas";
+        selection = "Programming,Pun,Spooky,Christmas";
       }
       const result = await axios.get(
         `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
@@ -151,7 +151,7 @@ app.post("/random-joke", async (req, res) => {
       res.render("indexJoke.ejs", { jokes: jokes });
     } else {
       const result = await axios.get(
-        "https://v2.jokeapi.dev/joke/Dark,Pun,Spooky"
+        "https://v2.jokeapi.dev/joke/Christmas,Pun,Spooky,Programming"
       );
       const joke = {
         joke: result.data.joke,

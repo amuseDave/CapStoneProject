@@ -291,10 +291,11 @@ main.main {
 .jokes-container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  row-gap: 20px;
-  column-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
 }
 .joke-generator-container {
   max-width: 600px;
@@ -343,6 +344,7 @@ main.main {
 .joke-container {
   position: relative;
   border-radius: 5px;
+  width: 350px;
   height: 200px;
   padding: 10px;
   display: flex;
@@ -435,17 +437,6 @@ main.main {
   font-family: Raleway, sans-serif;
 }
 
-@media (max-width: 1150px) {
-  .jokes-container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width: 900px) {
-  .jokes-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 /*Jokes styling*/
 /*Jokes styling*/
 /*Jokes styling*/
