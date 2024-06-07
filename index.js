@@ -107,6 +107,10 @@ app.get("/anime-description", (req, res) => {
 // JOKE HTTP REQUEST
 var jokes;
 
+app.get("/random-joke", async (req, res) => {
+  res.render("index.Joke.ejs", { jokes: jokes });
+});
+
 app.post("/random-joke", async (req, res) => {
   jokes = [];
   try {
@@ -120,7 +124,7 @@ app.post("/random-joke", async (req, res) => {
         });
         selection = selection.slice(0, -1);
       } else {
-        selection = "Any";
+        selection = "Dark,Pun,Spooky,Christmas";
       }
       const result = await axios.get(
         `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
@@ -147,7 +151,7 @@ app.post("/random-joke", async (req, res) => {
       res.render("indexJoke.ejs", { jokes: jokes });
     } else {
       const result = await axios.get(
-        "https://v2.jokeapi.dev/joke/Programming,Pun,Spooky"
+        "https://v2.jokeapi.dev/joke/Dark,Pun,Spooky"
       );
       const joke = {
         joke: result.data.joke,
