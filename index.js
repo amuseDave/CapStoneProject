@@ -102,23 +102,63 @@ app.get("/anime-description", (req, res) => {
 //
 //
 
+//
+
 // JOKE HTTP REQUEST
 var jokes;
 
 app.post("/random-joke", async (req, res) => {
+  jokes = [];
   try {
-    const result = await axios.get(
-      "https://v2.jokeapi.dev/joke/Programming,Pun,Spooky"
-    );
-    const joke = {
-      joke: result.data.joke,
-      category: result.data.category,
-      setup: result.data.setup,
-      delivery: result.data.delivery,
-    };
-    jokes = [];
-    jokes.push(joke);
-    res.render("indexJoke.ejs", { jokes: jokes });
+    if (req.body.amount !== undefined) {
+      var selection = "";
+      const typeArray = [req.body.options];
+
+      if (typeArray[0] !== undefined) {
+        typeArray.forEach((option) => {
+          selection += `${option},`;
+        });
+        selection = selection.slice(0, -1);
+      } else {
+        selection = "Any";
+      }
+      const result = await axios.get(
+        `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
+      );
+
+      if (result.data.amount !== undefined) {
+        result.data.jokes.forEach((joke) => {
+          jokes.push({
+            joke: joke.joke,
+            category: joke.category,
+            setup: joke.setup,
+            delivery: joke.delivery,
+          });
+        });
+      } else {
+        jokes.push({
+          joke: result.data.joke,
+          category: result.data.category,
+          setup: result.data.setup,
+          delivery: result.data.delivery,
+        });
+      }
+
+      res.render("indexJoke.ejs", { jokes: jokes });
+    } else {
+      const result = await axios.get(
+        "https://v2.jokeapi.dev/joke/Programming,Pun,Spooky"
+      );
+      const joke = {
+        joke: result.data.joke,
+        category: result.data.category,
+        setup: result.data.setup,
+        delivery: result.data.delivery,
+      };
+
+      jokes.push(joke);
+      res.render("indexJoke.ejs", { jokes: jokes });
+    }
   } catch (error) {
     res.render(
       "index.ejs",
@@ -127,23 +167,6 @@ app.post("/random-joke", async (req, res) => {
   }
 });
 
-app.post("/random-joke1", async (req, res) => {
-  var selection = "";
-  const typeArray = [req.body.options];
-
-  if (typeArray[0] !== undefined) {
-    typeArray.forEach((option) => {
-      selection += `${option},`;
-    });
-  }
-  selection = selection.slice(0, -1);
-  console.log(selection);
-  const result = await axios.get(
-    `https://v2.jokeapi.dev/joke/${selection}?amount=${req.body.amount}`
-  );
-
-  res.render("indexJoke.ejs");
-});
 // JOKE HTTP REQUEST
 
 app.listen(port, () => {

@@ -281,9 +281,11 @@ main.main {
 .joke-body {
   background-image: url(jokepbg.png);
   padding: 0px 40px;
+  padding-top: 50px;
 }
 .jokes-container {
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -309,8 +311,9 @@ main.main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 330px;
-  height: 330px;
+  max-width: 400px;
+  flex: 1;
+  max-height: 500px;
 }
 .joke-text {
   border-top: 1px solid black;
@@ -322,9 +325,7 @@ main.main {
   font-weight: 500;
   text-shadow: 0px 0px 10px black;
 }
-.joke-m {
-  margin-top: 60px;
-}
+
 .joke-d {
   text-shadow: 0px 0px 5px white;
 }
