@@ -251,6 +251,7 @@ main.main {
 /*HEADER STYLING*/
 .header {
   position: absolute;
+  z-index: 5;
   left: 0;
   right: 0;
   top: 0;
@@ -482,6 +483,15 @@ main.main {
   justify-content: center;
   flex-direction: column;
 }
+.joke-saved-hidden {
+  color: white;
+  text-shadow: 0px 0px 10px #c70039;
+  position: absolute;
+  bottom: 5;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
 
 @media (max-width: 1360px) {
   .joke-generator-container-wrap {
@@ -497,3 +507,28 @@ main.main {
 /*Jokes styling*/
 /*Jokes styling*/
 /*Jokes styling*/
+
+/*BACK BUTTON*/
+.back-bttn {
+  position: absolute;
+  top: 40;
+  left: 0;
+  z-index: 1;
+}
+.back-bttn input {
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 0px 10px white;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  height: 25px;
+  width: 100px;
+  transition: all 0.05s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.back-bttn input:hover {
+  font-weight: 800;
+}

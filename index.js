@@ -154,15 +154,16 @@ app.post("/random-joke", async (req, res) => {
       res.render("indexJoke.ejs", { jokes: jokes });
     } else {
       const result = await axios.get(
-        "https://v2.jokeapi.dev/joke/Christmas,Pun,Spooky,Dark"
+        "https://v2.jokeapi.dev/joke/Christmas,Pun,Spooky,Dark?amount=10"
       );
-      const joke = {
-        joke: result.data.joke,
-        category: result.data.category,
-        setup: result.data.setup,
-        delivery: result.data.delivery,
-      };
-      jokes.push(joke);
+      result.data.jokes.forEach((joke) => {
+        jokes.push({
+          joke: joke.joke,
+          category: joke.category,
+          setup: joke.setup,
+          delivery: joke.delivery,
+        });
+      });
       res.render("indexJoke.ejs", { jokes: jokes });
     }
   } catch (error) {
