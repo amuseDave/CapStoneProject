@@ -7,17 +7,10 @@ import { log } from "console";
 const app = express();
 const port = 3000;
 const currentFilePath = dirname(fileURLToPath(import.meta.url));
-function sanitizeString(str) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 app.use(express.static(`${currentFilePath}/public`));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
@@ -179,6 +172,17 @@ app.post("/random-joke", async (req, res) => {
   }
 });
 
+let savedJokes;
+
+app.post("/viewSavedJokes", (req, res) => {
+  savedJokes = req.body.savedJokes;
+  res.json({ message: "Saved jokes received", savedJokes: savedJokes });
+});
+
+app.get("/savedJokes", (req, res) => {
+  console.log(savedJokes);
+  res.render("indexSavedJokes.ejs", { savedJokes: savedJokes });
+});
 // JOKE HTTP REQUEST
 
 app.listen(port, () => {

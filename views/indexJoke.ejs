@@ -113,6 +113,7 @@
               />
             </div>
           </form>
+          <div id="view-jokes">View Your Jokes</div>
         </div>
       </div>
       <!---->
@@ -172,6 +173,23 @@
             if (!sameJoke) {
               savedJokes.push(savedJoke);
             }
+          }
+        });
+        $("#view-jokes").click(async () => {
+          try {
+            const response = await fetch("/viewSavedJokes", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ savedJokes: savedJokes }),
+            });
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            window.location.href = "/savedJokes";
+          } catch (error) {
+            console.error("Error:", error);
           }
         });
       });

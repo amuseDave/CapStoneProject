@@ -425,12 +425,30 @@ main.main {
   border: none;
   font-size: 1rem;
   cursor: pointer;
+
   transition: all 0.2s ease-in-out;
   font-family: Raleway, sans-serif;
 }
 .generate-joke-bttn:hover {
   color: #c70039;
   background-color: white;
+}
+#view-jokes {
+  position: absolute;
+  right: 10;
+  bottom: 45;
+  padding: 5px 10px;
+  color: white;
+  background-color: #e23264;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: Raleway, sans-serif;
+}
+
+#view-jokes:hover {
+  background-color: white;
+  color: #e23264;
 }
 .joke-select {
   background-color: #c70039;
