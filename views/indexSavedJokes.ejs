@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+    <style>
+      @media (max-width: 1360px) {
+        .joke-body {
+          padding-top: 0px;
+        }
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body class="joke-body">
+    <form class="back-bttn" action="/random-joke" method="GET">
+      <input type="submit" value="← Go Back" />
+    </form>
+    <%- include('partials/header.ejs') %>
+    <div class="jokes-container">
+      <% if (locals.savedJokes){ %>
+      <!---->
+      <% savedJokes.forEach((joke, index) => { %>
+      <div class="joke-container joke-container-<%= index %>">
+        <% if(joke.joke !== undefined){%>
+
+        <span class="joke-title-text jk-j-c-<%= index%>"
+          ><%= joke.category %></span
+        >
+        <div class="joke-text joke-t jk-j-<%= index%>"><%=joke.joke%></div>
+        <%} else {%>
+        <span class="joke-title-text jk-sd-c-<%= index%>"
+          ><%= joke.category %></span
+        >
+        <div class="joke-text joke-t jk-s-<%= index%>"><%=joke.setup%></div>
+        <div class="joke-line"></div>
+        <div class="joke-text jk-d-<%= index%>"><%=joke.delivery%></div>
+        <%}%>
+        <div
+          data-index="<%= index %>"
+          class="joke-remove-bttn joke-save-bttn joke-remove-bttn-<%= index%>"
+        >
+          Remove
+        </div>
+      </div>
+      <%})}%>
+    </div>
+    <script>
+      $(document).ready(() => {
+        let savedJokes = JSON.parse(localStorage.getItem("savedJ")) || [];
+        $(".joke-remove-bttn").click(async function () {
+          const index = $(this).data("index");
+          savedJokes.splice(index, 1);
+          $(`.joke-container-${index}`).remove();
+          console.log(savedJokes.length);
+          localStorage.setItem("savedJ", JSON.stringify(savedJokes));
+          try {
+            const response = await fetch("/viewSavedJokes", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ savedJokes: savedJokes }),
+            });
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            window.location.href = "/savedJokes";
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

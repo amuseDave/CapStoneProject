@@ -191,9 +191,9 @@
               savedJokes.push(savedJoke);
             }
           }
+          localStorage.setItem("savedJ", JSON.stringify(savedJokes));
         });
         $("#view-jokes").click(async () => {
-          localStorage.setItem("savedJ", JSON.stringify(savedJokes));
           try {
             const response = await fetch("/viewSavedJokes", {
               method: "POST",
