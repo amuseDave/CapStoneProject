@@ -27,21 +27,17 @@
       <% jokes.forEach((joke, index) => { %>
       <div class="joke-container">
         <% if(joke.joke !== undefined){%>
-        <div class="saved saved-<%= index %>">
-          <span class="joke-title-text jk-j-c-<%= index%>"
-            >📔<%= joke.category %>📔</span
-          >
-          <div class="joke-text joke-t jk-j-<%= index%>"><%=joke.joke%></div>
-        </div>
+        <span class="joke-title-text jk-j-c-<%= index%>"
+          >📔<%= joke.category %>📔</span
+        >
+        <div class="joke-text joke-t jk-j-<%= index%>"><%=joke.joke%></div>
         <%} else {%>
-        <div class="saved saved-<%= index %>">
-          <span class="joke-title-text jk-sd-c-<%= index%>"
-            >📔<%= joke.category %>📔</span
-          >
-          <div class="joke-text joke-t jk-s-<%= index%>"><%=joke.setup%></div>
-          <div class="joke-line"></div>
-          <div class="joke-text jk-d-<%= index%>"><%=joke.delivery%></div>
-        </div>
+        <span class="joke-title-text jk-sd-c-<%= index%>"
+          >📔<%= joke.category %>📔</span
+        >
+        <div class="joke-text joke-t jk-s-<%= index%>"><%=joke.setup%></div>
+        <div class="joke-line"></div>
+        <div class="joke-text jk-d-<%= index%>"><%=joke.delivery%></div>
         <%}%>
         <div
           data-index="<%= index %>"
@@ -121,7 +117,7 @@
     </div>
     <script>
       $(document).ready(() => {
-        let savedJokes = [];
+        let savedJokes = JSON.parse(localStorage.getItem("savedJ")) || [];
 
         $(".joke-save-bttn").click(function () {
           let sameJoke = false;
@@ -176,6 +172,7 @@
           }
         });
         $("#view-jokes").click(async () => {
+          localStorage.setItem("savedJ", JSON.stringify(savedJokes));
           try {
             const response = await fetch("/viewSavedJokes", {
               method: "POST",

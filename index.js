@@ -31,6 +31,7 @@ var yearRelease;
 var type;
 var description;
 var filteredTitles;
+let savedJokes;
 //ANIME VARIABLES
 app.get("/random-anime", (req, res) => {
   res.render("indexAnime.ejs", {
@@ -109,7 +110,7 @@ app.get("/anime-description", (req, res) => {
 var jokes;
 
 app.get("/random-joke", async (req, res) => {
-  res.render("index.Joke.ejs", {
+  res.render("indexJoke.ejs", {
     jokes: jokes,
   });
 });
@@ -171,8 +172,6 @@ app.post("/random-joke", async (req, res) => {
     );
   }
 });
-
-let savedJokes;
 
 app.post("/viewSavedJokes", (req, res) => {
   savedJokes = req.body.savedJokes;
