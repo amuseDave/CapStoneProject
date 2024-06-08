@@ -39,12 +39,18 @@
       $(document).ready(() => {
         $(".category-container").hover(
           () => {
-            $(".main-body").css("background-color", "rgb(87, 87, 87)");
-            $(".category-container").css("background-color", "rgb(24, 24, 24)");
+            $(".main-body").css("background-color", "rgb(3, 3, 3)");
+            $(".category-container").css(
+              "background-color",
+              "rgb(220, 220, 220)"
+            );
           },
           () => {
-            $(".main-body").css("background-color", "rgb(24, 24, 24)");
-            $(".category-container").css("background-color", "rgb(87, 87, 87)");
+            $(".main-body").css("background-color", "rgb(27, 27, 27)");
+            $(".category-container").css(
+              "background-color",
+              "rgb(150, 150, 150)"
+            );
           }
         );
       });
