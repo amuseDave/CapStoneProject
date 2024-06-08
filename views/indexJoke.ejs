@@ -124,41 +124,55 @@
 
         $(".joke-save-bttn").click(function () {
           let sameJoke = false;
-          var savedJoke = [];
           const index = $(this).data("index");
-          //
+
+          // Collecting data
           const jokeCat = $(`.jk-sd-c-${index}`).text();
           const jokeS = $(`.jk-s-${index}`).text();
           const jokeD = $(`.jk-d-${index}`).text();
-          //
+          // Collecting data 2
           const jokeCat2 = $(`.jk-j-c-${index}`).text();
           const jokeJ = $(`.jk-j-${index}`).text();
+
+          let savedJoke = {};
+
           if (jokeCat === "") {
-            savedJoke.push({ category: jokeCat2, joke: jokeJ });
+            savedJoke = { category: jokeCat2, joke: jokeJ };
           } else if (jokeCat2 === "") {
-            savedJoke.push({
+            savedJoke = {
               category: jokeCat,
               setup: jokeS,
               delivery: jokeD,
-            });
+            };
           }
+
+          // Check for duplicates
           if (savedJokes.length === 0) {
             savedJokes.push(savedJoke);
           } else {
             savedJokes.forEach((joke) => {
-              if (
-                joke.setup === savedJoke.setup ||
-                joke.joke === savedJoke.joke
+              if (joke.joke && savedJoke.joke) {
+                if (joke.joke === savedJoke.joke) {
+                  sameJoke = true;
+                }
+              } else if (
+                joke.setup &&
+                savedJoke.setup &&
+                joke.delivery &&
+                savedJoke.delivery
               ) {
-                sameJoke = true;
+                if (
+                  joke.setup === savedJoke.setup &&
+                  joke.delivery === savedJoke.delivery
+                ) {
+                  sameJoke = true;
+                }
               }
             });
             if (!sameJoke) {
               savedJokes.push(savedJoke);
             }
           }
-          console.log(savedJokes);
-          console.log(sameJoke);
         });
       });
     </script>

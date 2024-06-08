@@ -7,6 +7,14 @@ import { log } from "console";
 const app = express();
 const port = 3000;
 const currentFilePath = dirname(fileURLToPath(import.meta.url));
+function sanitizeString(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
 app.use(express.static(`${currentFilePath}/public`));
 app.use(express.urlencoded({ extended: true }));
